@@ -14,7 +14,7 @@
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */var Dp=S,zp=Symbol.for("react.element"),Fp=Symbol.for("react.fragment"),Op=Object.prototype.hasOwnProperty,Ip=Dp.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,jp={key:!0,ref:!0,__self:!0,__source:!0};function Mc(e,t,n){var r,l={},o=null,i=null;n!==void 0&&(o=""+n),t.key!==void 0&&(o=""+t.key),t.ref!==void 0&&(i=t.ref);for(r in t)Op.call(t,r)&&!jp.hasOwnProperty(r)&&(l[r]=t[r]);if(e&&e.defaultProps)for(r in t=e.defaultProps,t)l[r]===void 0&&(l[r]=t[r]);return{$$typeof:zp,type:e,key:o,ref:i,props:l,_owner:Ip.current}}_o.Fragment=Fp;_o.jsx=Mc;_o.jsxs=Mc;Sc.exports=_o;var V=Sc.exports,Ni={},Dc={exports:{}},Ke={},zc={exports:{}},Fc={};/**
+ */var Dp=S,zp=Symbol.for("react.element"),Fp=Symbol.for("react.fragment"),Op=Object.prototype.hasOwnProperty,Ip=Dp.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,jp={key:!0,ref:!0,__self:!0,__source:!0};function Mc(e,t,n){var r,l={},o=null,i=null;n!==void 0&&(o=""+n),t.key!==void 0&&(o=""+t.key),t.ref!==void 0&&(i=t.ref);for(r in t)Op.call(t,r)&&!jp.hasOwnProperty(r)&&(l[r]=t[r]);if(e&&e.defaultProps)for(r in t=e.defaultProps,t)l[r]===void 0&&(l[r]=t[r]);return{$$typeof:zp,type:e,key:o,ref:i,props:l,_owner:Ip.current}}_o.Fragment=Fp;_o.jsx=Mc;_o.jsxs=Mc;Sc.exports=_o;var V=Sc.exports,Ni={createRoot:function(e){return{render:function(t){ReactDOM.render(t,e)}}}},Dc={exports:{}},Ke={},zc={exports:{}},Fc={};/**;
  * @license React
  * scheduler.production.min.js
  *
@@ -372,8 +372,9 @@ const router = (() => {
 })();
 
 // Initialize the app
-Ni.createRoot(document.getElementById("root")).render(
-  V.jsx(Tc.StrictMode, {
-    children: V.jsx(App)
-  })
-);
+const root = document.getElementById("root");
+if (root && typeof ReactDOM !== 'undefined') {
+  ReactDOM.render(React.createElement(App), root);
+} else if (root) {
+  root.innerHTML = '<div style="padding:20px;color:red;">ReactDOM not loaded</div>';
+}
